@@ -1,0 +1,60 @@
+#include<climits>
+BinaryTreeNode<int>* helper(BinaryTreeNode<int>* root,int temp){
+    if(root==NULL){
+        return NULL;
+    }
+    if(root->data==temp){
+        return root;
+    }
+     BinaryTreeNode<int>* newnode=helper(root->left,temp);
+    if(newnode==NULL){
+        return helper(root->right,temp);
+    }
+    return newnode;
+}
+
+void print(BinaryTreeNode<int> *root, int sum,BinaryTreeNode<int>* node){
+    if(root==NULL){
+    return;
+}
+    if(root->data!=INT_MIN){
+    int temp=sum - root->data;
+    if(temp>0){
+        BinaryTreeNode<int>* search=helper(node,temp);
+        if(search!=NULL){
+            cout<<min(temp,root->data)<<" "<<max(temp,root->data)<<endl;
+            search->data= INT_MIN;
+        }
+}
+    }
+print(root->left,sum,node);
+    print(root->right,sum,node);
+
+}
+
+void nodesSumToS(BinaryTreeNode<int> *root, int sum) {
+    // Write your code here
+
+    if(root==NULL){
+        return;
+    }
+    
+    /*if(root==NULL){
+    return;
+}
+    int temp=sum - root->data;
+    if(temp>0){
+        BinaryTreeNode<int>* lnode=helper(root,temp);
+        if(lnode!=NULL){
+            cout<<min(temp,root->data)<<" "<<max(temp,root->data)<<endl;
+        }
+        else{
+            BinaryTreeNode<int>* rnode=helper(root->right,temp);
+        if(rnode!=NULL){
+            cout<<min(temp,root->data)<<" "<<max(temp,root->data)<<endl;
+        }
+        } */
+    
+    print(root,sum,root);
+    
+}
