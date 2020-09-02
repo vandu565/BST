@@ -1,0 +1,17 @@
+int lcaBinaryTree(BinaryTreeNode <int>* root , int val1, int val2){
+    // Write your code here
+    if(root==NULL)//ye lgana bhul gya tha 
+    {return 0;}
+if(root->data==val1 || root->data==val2)
+{return root->data;}
+    int l= lcaBinaryTree(root->left,val1,val2);
+    int r=lcaBinaryTree(root->right,val1,val2);  
+    if(l!=NULL&& r==NULL)
+    {return l;}
+    else if(r!=NULL&& l==NULL)
+    {return r;}
+    else if(r==NULL&& l==NULL)
+    {return NULL;}
+    else if(r!=NULL&& l!=NULL)
+    {return root->data;}
+}
