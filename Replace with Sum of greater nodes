@@ -1,0 +1,24 @@
+void helper(BinaryTreeNode<int> *root, int *sum)
+{
+    if(root==NULL){
+        return;
+    }
+    /*
+    1. why we are put *sum, Because we are passing here by
+       value of the function.
+    2. This is BST so that the right part has always the 
+       greater sum. we just need to add it to the root value.
+    3. The above point clearly proof why we doing here right first
+       then calculations and after that left part of the tree.
+    */
+    helper(root->right,sum);    
+    *sum=*sum+root->data;
+    root->data=*sum;
+    helper(root->left,sum); 
+}
+
+void replaceWithLargerNodesSum(BinaryTreeNode<int> *root) {
+    // Write your code here
+ int sum=0;
+    helper(root,&sum);
+}
