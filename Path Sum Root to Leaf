@@ -1,0 +1,29 @@
+void helper(BinaryTreeNode<int> *root, int k,vector<int> path){
+    if(root==NULL){
+        return;
+    }
+    k=k-root->data;
+    path.push_back(root->data);
+    if(root->left==NULL && root->right==NULL)
+    {
+        if(k==0)
+        {
+            for(int i=0;i<path.size();i++){
+                cout<<path[i]<<" ";
+            }
+        }
+        cout<<endl;
+        path.pop_back();
+        return;
+    }
+    helper(root->left,k,path);
+     helper(root->right,k,path);
+    path.pop_back();
+    
+}
+void rootToLeafPathsSumToK(BinaryTreeNode<int> *root, int k) {
+    // Write your code here
+vector<int> path;
+    helper(root,k,path);
+    
+}
